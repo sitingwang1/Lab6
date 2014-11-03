@@ -56,3 +56,9 @@ where c.cid = o.cid
 order by c.name asc;
 
 --Q7
+select*
+from orders
+left join products
+on orders.pid=products.pid
+where orders.dollars!=products.priceUSD*orders.qty
+order by orders.dollars ASC;
