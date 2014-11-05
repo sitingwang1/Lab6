@@ -13,14 +13,20 @@ order by count(p.name) desc
 limit 1
 
 --Q2
-select p.city, c.name, c.city
-from products p
-     customers c
-where p.city = c.city
-group by products.city,c.name, c.city, 
-having count(p.name) = max
-order by count(p.name) desc
-limit 2;
+select distinct c.name, c.city
+from Customers c
+INNER JOIN Orders o
+on o.cid = c.cid
+INNER JOIN Products p
+on o.pid = p.pid
+where c.city in (select products.city
+		       from products
+                 group by city 
+                 having COUNT(*) = (select COUNT(*)
+			                     from products
+			                     group by city 
+			                     order by COUNT(*) DESC 
+limit 1))
 
 --Q3
 select*
