@@ -4,13 +4,13 @@
 
 
 --Q1
-select p.city, c.name, count(p.name)
-from products p,
-customers c
-where p.city = c.city
-group by p.city, c.name
-order by count(p.name) desc
-limit 1
+--select p.city, c.name, count(p.name)
+--from products p,
+--customers c
+--where p.city = c.city
+--group by p.city, c.name
+--order by count(p.name) desc
+--limit 1
 
 --Q2
 select distinct c.name, c.city
@@ -43,11 +43,11 @@ where c.cid = o.cid
 order by o.dollars asc; 
 
 --Q5
-select c.name, coalesce(o.qty, 0)
-from customers c
-left outer join orders o
-on o.cid=c.cid
-order by c.name asc;
+--select c.name, coalesce(o.qty, 0)
+--from customers c
+--left outer join orders o
+--on o.cid=c.cid
+--order by c.name asc;
 
 --Q6
 select distinct c.name, p.name, a.name
@@ -62,9 +62,9 @@ where c.cid = o.cid
 order by c.name asc;
 
 --Q7
-select*
-from orders
-left join products
-on orders.pid=products.pid
-where orders.dollars!=products.priceUSD*orders.qty
-order by orders.dollars ASC;
+--select*
+--from orders
+--left join products
+--on orders.pid=products.pid
+--where orders.dollars!=products.priceUSD*orders.qty
+--order by orders.dollars ASC;
