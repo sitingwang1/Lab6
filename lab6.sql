@@ -61,10 +61,9 @@ where c.cid = o.cid
   and a.city = 'New York'
 order by c.name asc;
 
-/*--Q7
-select*
-from orders
-left join products
-on orders.pid=products.pid
-where orders.dollars!=products.priceUSD*orders.qty
-order by orders.dollars ASC;*/
+--Q7
+select o.*
+from orders o, products p, customers c
+where o.pid = p.pid
+	and o.cid = c.cid
+	and (p.priceusd * o.qty) - c.discount != o.dollars;
