@@ -3,14 +3,18 @@
 --10/23/14
 
 
-/*--Q1
-select p.city, c.name, count(p.name)
-from products p,
-customers c
-where p.city = c.city
-group by p.city, c.name
-order by count(p.name) desc
-limit 1*/
+--Q1
+select distinct c.name, c.city
+from Customers c
+inner join Orders c
+on o.cid=c.cid
+inner join Products p
+on o.pid= p.pid
+where c.city in(select p.city
+		from Products
+		group by p.city
+		order by count(*)
+		limit 2)
 
 --Q2
 select distinct c.name, c.city
@@ -42,12 +46,11 @@ from customers c,
 where c.cid = o.cid
 order by o.dollars asc; 
 
-/*--Q5
-select c.name, coalesce(o.qty, 0)
-from customers c
-left outer join orders o
-on o.cid=c.cid
-order by c.name asc;*/
+--Q5
+select c.name, coalesce(o.dollars, 0)
+from customers,
+full outer join orderson c.cid=o.cid
+order by c.name;
 
 --Q6
 select distinct c.name, p.name, a.name
